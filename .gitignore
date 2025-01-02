@@ -1,0 +1,43 @@
+# Ignore build output directories
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider-specific files
+.idea/
+*.idea/
+
+# Visual Studio Code settings
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# ASP.NET Core secrets
+secrets.json
+
+# Configuration files
+appsettings.*.json
+!.appsettings.json
+
+# Dependency directories
+node_modules/
+
+# Publish output
+wwwroot/
+
+# Temporary files
+*.tmp
+*.cache
+*.pdb
+*.pid
+*.log
+*.swp
+*.lock
+*.coverage
