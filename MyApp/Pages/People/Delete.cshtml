@@ -1,11 +1,15 @@
 @page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model MyApp.Pages.People.DeleteModel
+@attribute [Authorize]
+
 
 @{
     ViewData["Title"] = "Delete Person";
 }
 
-<h1 class="mb-4 text-danger">Confirm Deletion</h1>
+<h1 class="mb-4">Confirm Deletion</h1>
 
 <div class="card shadow-sm">
     <div class="card-body">

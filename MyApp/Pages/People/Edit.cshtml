@@ -1,5 +1,8 @@
 @page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model MyApp.Pages.People.EditModel
+@attribute [Authorize]
 
 @{
     ViewData["Title"] = "Edit Details";

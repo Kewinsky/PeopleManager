@@ -1,5 +1,8 @@
 @page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model MyApp.Pages.People.IndexModel
+@attribute [Authorize]
 
 @{
     ViewData["Title"] = "People List";
@@ -7,9 +10,7 @@
 
 <h1 class="mb-4">People Manager</h1>
 
-<!-- Search Bar and Add Button -->
 <div class="d-flex justify-content-between mb-3">
-    <!-- Search Bar -->
     <form method="get" class="w-50">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" asp-for="Search" />
@@ -17,67 +18,74 @@
         </div>
     </form>
 
-    <!-- Add Button -->
     <a asp-page="Create" class="btn btn-success align-self-center">Add Person</a>
 </div>
 
-<!-- Table -->
-<table class="table table-striped">
-    <thead class="bg-dark text-white">
-    <tr>
-        <th style="width:25%">
-            <a asp-page="./Index" asp-route-sortBy="FirstName" asp-route-sortOrder="@((Model.SortBy == "FirstName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
-                First Name
-                @if (Model.SortBy == "FirstName")
-                {
-                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
-                }
-            </a>
-        </th>
-        <th style="width:25%">
-            <a asp-page="./Index" asp-route-sortBy="LastName" asp-route-sortOrder="@((Model.SortBy == "LastName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
-                Last Name
-                @if (Model.SortBy == "LastName")
-                {
-                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
-                }
-            </a>
-        </th>
-        <th style="width:10%">
-            <a asp-page="./Index" asp-route-sortBy="Gender" asp-route-sortOrder="@((Model.SortBy == "Gender" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
-                Gender
-                @if (Model.SortBy == "Gender")
-                {
-                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
-                }
-            </a>
-        </th>
-        <th style="width:30%">
-            <a asp-page="./Index" asp-route-sortBy="Email" asp-route-sortOrder="@((Model.SortBy == "Email" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
-                Email
-                @if (Model.SortBy == "Email")
-                {
-                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
-                }
-            </a>
-        </th>
-        <th style="width:10%"></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Person)
-    {
+@if (!Model.Person.Any())
+{
+    <div class="alert alert-warning" role="alert">
+        No people found matching your search criteria.
+    </div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead class="bg-dark text-white">
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-            <td>@Html.DisplayFor(modelItem => item.Gender)</td>
-            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id" class="text-warning mr-2 nounderline"><i class="bi bi-eye"></i></a>
-                <a asp-page="./Edit" asp-route-id="@item.Id" class="text-primary mr-3 nounderline"><i class="bi bi-pencil"></i></a>
-                <a asp-page="./Delete" asp-route-id="@item.Id" class="text-danger mr-1 nounderline"><i class="bi bi-trash"></i></a>
-            </td>
+            <th style="width:25%">
+                <a asp-page="./Index" asp-route-sortBy="FirstName" asp-route-sortOrder="@((Model.SortBy == "FirstName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
+                    First Name
+                    @if (Model.SortBy == "FirstName")
+                    {
+                        <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                    }
+                </a>
+            </th>
+            <th style="width:25%">
+                <a asp-page="./Index" asp-route-sortBy="LastName" asp-route-sortOrder="@((Model.SortBy == "LastName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
+                    Last Name
+                    @if (Model.SortBy == "LastName")
+                    {
+                        <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                    }
+                </a>
+            </th>
+            <th style="width:10%">
+                <a asp-page="./Index" asp-route-sortBy="Gender" asp-route-sortOrder="@((Model.SortBy == "Gender" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
+                    Gender
+                    @if (Model.SortBy == "Gender")
+                    {
+                        <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                    }
+                </a>
+            </th>
+            <th style="width:30%">
+                <a asp-page="./Index" asp-route-sortBy="Email" asp-route-sortOrder="@((Model.SortBy == "Email" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
+                    Email
+                    @if (Model.SortBy == "Email")
+                    {
+                        <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                    }
+                </a>
+            </th>
+            <th style="width:10%"></th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Person)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="text-primary mr-2 nounderline"><i class="bi bi-eye"></i></a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="text-warning mr-3 nounderline"><i class="bi bi-pencil"></i></a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="text-danger mr-1 nounderline"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

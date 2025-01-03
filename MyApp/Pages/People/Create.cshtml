@@ -1,5 +1,8 @@
 @page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model MyApp.Pages.People.CreateModel
+@attribute [Authorize]
 
 @{
     ViewData["Title"] = "Add New Person";
