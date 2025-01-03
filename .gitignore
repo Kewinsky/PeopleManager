@@ -29,9 +29,6 @@ appsettings.*.json
 # Dependency directories
 node_modules/
 
-# Publish output
-wwwroot/
-
 # Temporary files
 *.tmp
 *.cache
