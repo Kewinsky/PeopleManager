@@ -30,13 +30,6 @@ namespace MyApp.Pages.People
         [BindProperty(SupportsGet = true)]
         public string SortOrder { get; set; } = "asc";
 
-        [BindProperty(SupportsGet = true)]
-        public int Page { get; set; } = 1;
-
-        public int TotalPages { get; set; }
-
-        private const int PageSize = 5;
-
         public async Task OnGetAsync()
         {
             // Start query
@@ -57,15 +50,11 @@ namespace MyApp.Pages.People
                 "FirstName" => SortOrder == "asc" ? query.OrderBy(p => p.FirstName) : query.OrderByDescending(p => p.FirstName),
                 "LastName" => SortOrder == "asc" ? query.OrderBy(p => p.LastName) : query.OrderByDescending(p => p.LastName),
                 "Email" => SortOrder == "asc" ? query.OrderBy(p => p.Email) : query.OrderByDescending(p => p.Email),
-                _ => query.OrderBy(p => p.FirstName), // Default sorting
+                _ => query.OrderBy(p => p.FirstName), // Default sorting by FirstName
             };
 
-            // Calculate total pages
-            int totalRecords = await query.CountAsync();
-            TotalPages = (int)Math.Ceiling(totalRecords / (double)PageSize);
-
-            // Apply pagination
-            Person = await query.Skip((Page - 1) * PageSize).Take(PageSize).ToListAsync();
+            // Fetch the records based on the current query (no pagination)
+            Person = await query.ToListAsync();
         }
     }
 }

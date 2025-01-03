@@ -7,25 +7,26 @@
 
 <h1 class="mb-4">People Manager</h1>
 
-<!-- Search Bar and Button in the Same Row with 50% Width for the Search Bar -->
-<div class="row mb-3">
-    <div class="col-md-6">
+<!-- Search Bar and Add Button -->
+<div class="d-flex justify-content-between mb-3">
+    <!-- Search Bar -->
+    <form method="get" class="w-50">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" asp-for="Search" />
             <button type="submit" class="btn btn-secondary">Search</button>
         </div>
-    </div>
-    <div class="col-md-6 text-end">
-        <a asp-page="Create" class="btn btn-success">Add Person</a>
-    </div>
+    </form>
+
+    <!-- Add Button -->
+    <a asp-page="Create" class="btn btn-success align-self-center">Add Person</a>
 </div>
 
-<!-- Table with Dark Header and White Text -->
+<!-- Table -->
 <table class="table table-striped">
     <thead class="bg-dark text-white">
     <tr>
         <th style="width:25%">
-            <a asp-page="./Index" asp-route-sortBy="FirstName" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "FirstName") ? "desc" : "asc")" class="text-white nounderline">
+            <a asp-page="./Index" asp-route-sortBy="FirstName" asp-route-sortOrder="@((Model.SortBy == "FirstName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
                 First Name
                 @if (Model.SortBy == "FirstName")
                 {
@@ -34,7 +35,7 @@
             </a>
         </th>
         <th style="width:25%">
-            <a asp-page="./Index" asp-route-sortBy="LastName" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "LastName") ? "desc" : "asc")" class="text-white nounderline">
+            <a asp-page="./Index" asp-route-sortBy="LastName" asp-route-sortOrder="@((Model.SortBy == "LastName" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
                 Last Name
                 @if (Model.SortBy == "LastName")
                 {
@@ -43,7 +44,7 @@
             </a>
         </th>
         <th style="width:10%">
-            <a asp-page="./Index" asp-route-sortBy="Gender" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "Gender") ? "desc" : "asc")" class="text-white nounderline">
+            <a asp-page="./Index" asp-route-sortBy="Gender" asp-route-sortOrder="@((Model.SortBy == "Gender" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
                 Gender
                 @if (Model.SortBy == "Gender")
                 {
@@ -52,7 +53,7 @@
             </a>
         </th>
         <th style="width:30%">
-            <a asp-page="./Index" asp-route-sortBy="Email" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "Email") ? "desc" : "asc")" class="text-white nounderline">
+            <a asp-page="./Index" asp-route-sortBy="Email" asp-route-sortOrder="@((Model.SortBy == "Email" && Model.SortOrder == "asc") ? "desc" : "asc")" class="text-white">
                 Email
                 @if (Model.SortBy == "Email")
                 {
@@ -80,21 +81,3 @@
     }
     </tbody>
 </table>
-
-<!-- Pagination -->
-<nav>
-    <ul class="pagination">
-        <li class="page-item @((Model.Page == 1) ? "disabled" : "")">
-            <a class="page-link" href="?page=@(Model.Page - 1)&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">Previous</a>
-        </li>
-        @for (int i = 1; i <= Model.TotalPages; i++)
-        {
-            <li class="page-item @((i == Model.Page) ? "active" : "")">
-                <a class="page-link" href="?page=@i&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">@i</a>
-            </li>
-        }
-        <li class="page-item @((Model.Page == Model.TotalPages) ? "disabled" : "")">
-            <a class="page-link" href="?page=@(Model.Page + 1)&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">Next</a>
-        </li>
-    </ul>
-</nav>
