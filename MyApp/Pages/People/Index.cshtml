@@ -1,0 +1,100 @@
+@page
+@model MyApp.Pages.People.IndexModel
+
+@{
+    ViewData["Title"] = "People List";
+}
+
+<h1 class="mb-4">People Manager</h1>
+
+<!-- Search Bar and Button in the Same Row with 50% Width for the Search Bar -->
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" asp-for="Search" />
+            <button type="submit" class="btn btn-secondary">Search</button>
+        </div>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-page="Create" class="btn btn-success">Add Person</a>
+    </div>
+</div>
+
+<!-- Table with Dark Header and White Text -->
+<table class="table table-striped">
+    <thead class="bg-dark text-white">
+    <tr>
+        <th style="width:25%">
+            <a asp-page="./Index" asp-route-sortBy="FirstName" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "FirstName") ? "desc" : "asc")" class="text-white nounderline">
+                First Name
+                @if (Model.SortBy == "FirstName")
+                {
+                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                }
+            </a>
+        </th>
+        <th style="width:25%">
+            <a asp-page="./Index" asp-route-sortBy="LastName" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "LastName") ? "desc" : "asc")" class="text-white nounderline">
+                Last Name
+                @if (Model.SortBy == "LastName")
+                {
+                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                }
+            </a>
+        </th>
+        <th style="width:10%">
+            <a asp-page="./Index" asp-route-sortBy="Gender" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "Gender") ? "desc" : "asc")" class="text-white nounderline">
+                Gender
+                @if (Model.SortBy == "Gender")
+                {
+                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                }
+            </a>
+        </th>
+        <th style="width:30%">
+            <a asp-page="./Index" asp-route-sortBy="Email" asp-route-sortOrder="@((Model.SortOrder == "asc" && Model.SortBy == "Email") ? "desc" : "asc")" class="text-white nounderline">
+                Email
+                @if (Model.SortBy == "Email")
+                {
+                    <i class="bi @(Model.SortOrder == "asc" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                }
+            </a>
+        </th>
+        <th style="width:10%"></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Person)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+            <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id" class="text-warning mr-2 nounderline"><i class="bi bi-eye"></i></a>
+                <a asp-page="./Edit" asp-route-id="@item.Id" class="text-primary mr-3 nounderline"><i class="bi bi-pencil"></i></a>
+                <a asp-page="./Delete" asp-route-id="@item.Id" class="text-danger mr-1 nounderline"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<nav>
+    <ul class="pagination">
+        <li class="page-item @((Model.Page == 1) ? "disabled" : "")">
+            <a class="page-link" href="?page=@(Model.Page - 1)&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">Previous</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @((i == Model.Page) ? "active" : "")">
+                <a class="page-link" href="?page=@i&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">@i</a>
+            </li>
+        }
+        <li class="page-item @((Model.Page == Model.TotalPages) ? "disabled" : "")">
+            <a class="page-link" href="?page=@(Model.Page + 1)&search=@Model.Search&sortBy=@Model.SortBy&sortOrder=@Model.SortOrder">Next</a>
+        </li>
+    </ul>
+</nav>

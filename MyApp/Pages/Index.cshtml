@@ -1,9 +1,57 @@
 ﻿@page
 @model Library.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the People Manager🌐</h1>
+<!-- Hero Section with Background Image -->
+<div class="hero-section text-center text-white d-flex justify-content-center align-items-center" style="background-image: url('https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; height: 60vh;">
+    <div class="container">
+        <h1 class="display-4 mb-4 text-black">Welcome to the People Manager</h1>
+        <p class="lead mb-4 text-black">Manage your contacts effortlessly. Add, view, and manage people in a simple and intuitive way.</p>
+        <a href="/People/Index" class="btn btn-outline-dark btn-lg">Get Started</a>
+    </div>
+</div>
+
+<!-- Key Features Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Key Features</h2>
+    <div class="row text-center d-flex align-items-stretch">
+        <!-- Card 1: View People -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://img.freepik.com/free-vector/employees-cv-candidates-resume-corporate-workers-students-id-isolate-flat-design-element-job-applications-avatars-personal-information-concept-illustration_335657-1661.jpg?t=st=1735901173~exp=1735904773~hmac=f80aac4632c4a90bd9f6581d2ead0c8a7581897766dec8362e55f167153f7073&w=826" class="card-img-top" alt="View People">
+                <div class="card-body">
+                    <h5 class="card-title">View People</h5>
+                    <p class="card-text">Browse through your list of people and their details with ease.</p>
+                    <a href="/People/Index" class="btn btn-secondary">View List</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Add Person -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://img.freepik.com/free-vector/unemployment-insurance-abstract-concept-vector-illustration-unemployment-benefits-lost-job-tired-stressed-businessman-claim-form-workers-compensation-paper-work-interview-abstract-metaphor_335657-1355.jpg?t=st=1735901015~exp=1735904615~hmac=80e0b393f167c27a0382af2fe3151886110919ec97745951b4525c23c8ccb76d&w=826" class="card-img-top" alt="Add Person">
+                <div class="card-body">
+                    <h5 class="card-title">Add Person</h5>
+                    <p class="card-text">Easily add new people to your records by entering their details.</p>
+                    <a href="/People/Create" class="btn btn-secondary">Add New</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Manage People -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://img.freepik.com/free-vector/cloud-computing-security-abstract-concept-illustration_335657-2105.jpg?t=st=1735900884~exp=1735904484~hmac=ad274e223588d1e5899bcd16887b75fa2cf019fb989fe68a5c8ca40239814745&w=826" class="card-img-top" alt="Secure Authentication">
+                <div class="card-body">
+                    <h5 class="card-title">Secure Auth</h5>
+                    <p class="card-text">Login securely and manage your records with confidence.</p>
+                    <a href="/Identity/Account/Login" class="btn btn-secondary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

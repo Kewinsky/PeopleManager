@@ -1,0 +1,63 @@
+@page
+@model MyApp.Pages.People.CreateModel
+
+@{
+    ViewData["Title"] = "Add New Person";
+}
+
+<h1 class="mb-4">Add New Person</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-group">
+                <label asp-for="Person.FirstName" class="control-label">First Name <span class="text-danger">*</span></label>
+                <input asp-for="Person.FirstName" class="form-control" placeholder="John" />
+                <span asp-validation-for="Person.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.LastName" class="control-label">Last Name <span class="text-danger">*</span></label>
+                <input asp-for="Person.LastName" class="form-control" placeholder="Smith" />
+                <span asp-validation-for="Person.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.DateOfBirth" class="control-label">Date of Birth <span class="text-danger">*</span></label>
+                <input asp-for="Person.DateOfBirth" type="date" class="form-control" />
+                <span asp-validation-for="Person.DateOfBirth" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.Gender" class="control-label">Gender <span class="text-danger">*</span></label>
+                <select asp-for="Person.Gender" class="form-control">
+                    <option value="" selected>Prefer not to say</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Person.Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.PhoneNumber" class="control-label">Phone Number <span class="text-danger">*</span></label>
+                <input asp-for="Person.PhoneNumber" class="form-control" placeholder="1234567890" />
+                <span asp-validation-for="Person.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Person.Email" class="control-label">Email <span class="text-danger">*</span></label>
+                <input asp-for="Person.Email" type="email" class="form-control" placeholder="xyz@example.com" />
+                <span asp-validation-for="Person.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4 d-flex gap-2">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

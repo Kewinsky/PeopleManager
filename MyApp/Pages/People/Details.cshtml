@@ -1,0 +1,57 @@
+@page
+@model MyApp.Pages.People.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="mb-4">Person Details</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Personal Information</h5>
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.FirstName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.FirstName)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.LastName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.LastName)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.DateOfBirth)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.DateOfBirth)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.Gender)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.Gender)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.PhoneNumber)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.PhoneNumber)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Person.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Person.Email)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-4 d-flex gap-2">
+    <a asp-page="./Edit" asp-route-id="@Model.Person.Id" class="btn btn-warning">Edit</a>
+    <a asp-page="./Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
