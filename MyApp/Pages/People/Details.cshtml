@@ -12,37 +12,31 @@
         <h5 class="card-title mb-4">Personal Information</h5>
         <dl class="row">
             <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.FirstName)
+                Full Name
             </dt>
             <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Person.FirstName)
+                @Model.Person.FirstName @Model.Person.LastName
             </dd>
             <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.LastName)
+                Birthdate
             </dt>
             <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Person.LastName)
+                @Model.Person.DateOfBirth.ToString("dd-MM-yyyy")
             </dd>
             <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.DateOfBirth)
-            </dt>
-            <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Person.DateOfBirth)
-            </dd>
-            <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.Gender)
+                Gender
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Person.Gender)
             </dd>
             <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.PhoneNumber)
+                Phone Number
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Person.PhoneNumber)
             </dd>
             <dt class="col-sm-3 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Person.Email)
+                Email Address
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Person.Email)
