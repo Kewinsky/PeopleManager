@@ -1,29 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using MyApp.Data;
-using MyApp.Models;
 
-namespace MyApp.Pages
+namespace Library.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly MyApp.Data.ApplicationDbContext _context;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(MyApp.Data.ApplicationDbContext context)
+        public IndexModel(ILogger<IndexModel> logger)
         {
-            _context = context;
+            _logger = logger;
         }
 
-        public IList<Person> Person { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public void OnGet()
         {
-            Person = await _context.Person.ToListAsync();
+
         }
     }
 }
